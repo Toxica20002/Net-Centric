@@ -1,0 +1,30 @@
+{
+    "users":
+    [
+        {
+            "id": 1,
+            "name": "John Wick",
+            "username": "johnwick",
+            "password": "jZae727K08KaOmKSgOaGzww_XVqGr_PKEgIMkjrcbJI="
+        },
+        {
+            "id": 2,
+            "name": "Jane Doe",
+            "username": "janedoe",
+            "password": "jZae727K08KaOmKSgOaGzww_XVqGr_PKEgIMkjrcbJI="
+        },
+        {
+            "id": 3,
+            "name": "Jim Beam",
+            "username": "jimbeam",
+            "password": "jZae727K08KaOmKSgOaGzww_XVqGr_PKEgIMkjrcbJI="
+        },
+        {
+            "id": 4,
+            "name": "Jill Valentine",
+            "username": "jillvalentine",
+            "password": "jZae727K08KaOmKSgOaGzww_XVqGr_PKEgIMkjrcbJI="
+        }
+
+    ]
+}
