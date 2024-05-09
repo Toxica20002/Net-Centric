@@ -56,7 +56,7 @@ func main() {
 			message, _ := reader.ReadString('\n')
 			message = strings.TrimSpace(message)
 
-			fullMessage := recipient + " " + message + " " + username
+			fullMessage := recipient + " " + username + " " + message
 			_, err = conn.Write([]byte(fullMessage))
 			checkError(err)
 		} else {

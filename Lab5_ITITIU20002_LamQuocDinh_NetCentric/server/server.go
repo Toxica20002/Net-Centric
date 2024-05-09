@@ -32,14 +32,14 @@ func handleClient(conn *net.UDPConn) {
 		return
 	}
 	message := string(buf[:n])
-
+	fmt.Println("Received: ", message)
 	//fmt.Println("Received: ", message)
 	if strings.HasPrefix(message, "@") {
 		parts := strings.SplitN(message, " ", 3)
 		command := parts[0][1:] // remove the '@'
 		if len(parts) > 1 {
-			msg := parts[1]
-			sender := parts[2]
+			msg := parts[2]
+			sender := parts[1]
 			if command == "all" {
 				for addr, client := range clients {
 					if client.Name == sender {
@@ -62,7 +62,7 @@ func handleClient(conn *net.UDPConn) {
 					}
 				}
 				if !flag {
-					errMsg := "The user " + command + " does not exist."
+					errMsg := "(Public) Server: The user " + command + " does not exist."
 					conn.WriteToUDP([]byte(errMsg), addr)
 				}
 			}
@@ -73,7 +73,13 @@ func handleClient(conn *net.UDPConn) {
 		// fmt.Println("New client registered: " + message + " from " + addr.String())
 		message = strings.TrimSpace(message)
 		clients[addr.String()] = ClientInfo{IP: addr.IP.String(), Name: message}
-		fmt.Println("New client registered: " + message + " from " + addr.String())
+
+		for addr, _ := range clients {
+			msg := "(Public) Server: User " + message + " has joined the chat."
+			clientAddr, _ := net.ResolveUDPAddr("udp", addr) // assuming clients are listening on port 1200
+			conn.WriteToUDP([]byte(msg), clientAddr)
+		}
+		fmt.Println("User " + message + " has joined the chat.")
 	}
 }
 
